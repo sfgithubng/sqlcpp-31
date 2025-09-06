@@ -12,13 +12,13 @@ CREATE TABLE Artists (
 CREATE TABLE Albums (
   IdAlbum int PRIMARY KEY CHECK (IdAlbum > 0),
   Name varchar(255) NOT NULL,
-  ReleaseDate int NOT NULL CHECK (ReleaseDate > 0)
+  ReleaseDate timestamp with time zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE CompilationAlbums (
   IdCompilationAlbum int PRIMARY KEY CHECK (IdCompilationAlbum > 0),
   Name varchar(255) NOT NULL,
-  ReleaseDate int NOT NULL CHECK (ReleaseDate > 0)
+  ReleaseDate timestamp with time zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE Songs (
