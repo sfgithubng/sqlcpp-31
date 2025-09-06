@@ -58,3 +58,11 @@ CREATE TABLE CompilationAlbumSongs (
   FOREIGN KEY (IdCompilationAlbum) REFERENCES CompilationAlbums(IdCompilationAlbum),
   FOREIGN KEY (IdSong) REFERENCES Songs(IdSong)
 );
+
+CREATE TABLE CompilationAlbumArtists (
+  IdCompilationAlbum int,
+  IdArtist int,
+  PRIMARY KEY (IdCompilationAlbum, IdArtist),
+  FOREIGN KEY (IdCompilationAlbum) REFERENCES CompilationAlbums(IdCompilationAlbum),
+  FOREIGN KEY (IdArtist) REFERENCES Artists(IdArtist)
+);
