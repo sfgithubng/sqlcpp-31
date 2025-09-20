@@ -9,30 +9,18 @@ CREATE TABLE Artists (
   NickName varchar(255) NOT NULL
 );
 
-CREATE TABLE Albums (
-  IdAlbum int PRIMARY KEY CHECK (IdAlbum > 0),
-  Name varchar(255) NOT NULL,
-  ReleaseDate timestamp with time zone DEFAULT now() NOT NULL
-);
-
-CREATE TABLE CompilationAlbums (
-  IdCompilationAlbum int PRIMARY KEY CHECK (IdCompilationAlbum > 0),
-  Name varchar(255) NOT NULL,
-  ReleaseDate timestamp with time zone DEFAULT now() NOT NULL
-);
-
-CREATE TABLE Songs (
-  IdSong int PRIMARY KEY CHECK (IdSong > 0),
-  Name varchar(255) NOT NULL,
-  Duration int NOT NULL CHECK (Duration > 0)
-);
-
 CREATE TABLE ArtistGenres (
   IdArtist int,
   IdGenre int,
   PRIMARY KEY (IdArtist, IdGenre),
   FOREIGN KEY (IdArtist) REFERENCES Artists(IdArtist),
   FOREIGN KEY (IdGenre) REFERENCES Genres(IdGenre)
+);
+
+CREATE TABLE Albums (
+  IdAlbum int PRIMARY KEY CHECK (IdAlbum > 0),
+  Name varchar(255) NOT NULL,
+  ReleaseDate timestamp with time zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE AlbumArtists (
@@ -43,12 +31,24 @@ CREATE TABLE AlbumArtists (
   FOREIGN KEY (IdArtist) REFERENCES Artists(IdArtist)
 );
 
+CREATE TABLE Songs (
+  IdSong int PRIMARY KEY CHECK (IdSong > 0),
+  Name varchar(255) NOT NULL,
+  Duration int NOT NULL CHECK (Duration > 0)
+);
+
 CREATE TABLE AlbumSongs (
   IdAlbum int,
   IdSong int,
   PRIMARY KEY (IdAlbum, IdSong),
   FOREIGN KEY (IdAlbum) REFERENCES Albums(IdAlbum),
   FOREIGN KEY (IdSong) REFERENCES Songs(IdSong)
+);
+
+CREATE TABLE CompilationAlbums (
+  IdCompilationAlbum int PRIMARY KEY CHECK (IdCompilationAlbum > 0),
+  Name varchar(255) NOT NULL,
+  ReleaseDate timestamp with time zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE CompilationAlbumSongs (
