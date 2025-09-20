@@ -33,16 +33,10 @@ CREATE TABLE AlbumArtists (
 
 CREATE TABLE Songs (
   IdSong int PRIMARY KEY CHECK (IdSong > 0),
-  Name varchar(255) NOT NULL,
-  Duration int NOT NULL CHECK (Duration > 0)
-);
-
-CREATE TABLE AlbumSongs (
   IdAlbum int,
-  IdSong int,
-  PRIMARY KEY (IdAlbum, IdSong),
-  FOREIGN KEY (IdAlbum) REFERENCES Albums(IdAlbum),
-  FOREIGN KEY (IdSong) REFERENCES Songs(IdSong)
+  Name varchar(255) NOT NULL,
+  Duration int NOT NULL CHECK (Duration > 0),
+  FOREIGN KEY (IdAlbum) REFERENCES Albums(IdAlbum)
 );
 
 CREATE TABLE CompilationAlbums (
@@ -57,12 +51,4 @@ CREATE TABLE CompilationAlbumSongs (
   PRIMARY KEY (IdCompilationAlbum, IdSong),
   FOREIGN KEY (IdCompilationAlbum) REFERENCES CompilationAlbums(IdCompilationAlbum),
   FOREIGN KEY (IdSong) REFERENCES Songs(IdSong)
-);
-
-CREATE TABLE CompilationAlbumArtists (
-  IdCompilationAlbum int,
-  IdArtist int,
-  PRIMARY KEY (IdCompilationAlbum, IdArtist),
-  FOREIGN KEY (IdCompilationAlbum) REFERENCES CompilationAlbums(IdCompilationAlbum),
-  FOREIGN KEY (IdArtist) REFERENCES Artists(IdArtist)
 );
